@@ -20,7 +20,8 @@ class LearningAgent(Agent):
         self.alpha = alpha       # Learning factor
 
         # Set any additional class parameters as needed
-        self.tolerance = 0.01
+        self.tolerance = 0.05
+        self.a = 0.0035
 
 
     def reset(self, destination=None, testing=False):
@@ -39,8 +40,9 @@ class LearningAgent(Agent):
             self.alpha = 0
         else:
             self.tolerance = self.tolerance + 1.0
-            self.epsilon = math.cos(self.alpha*self.tolerance)
-            # self.epsilon = math.exp(-(self.alpha*self.tolerance))
+            self.epsilon = math.cos(self.a*self.tolerance)
+            self.alpha = math.exp(-(4*self.a*self.tolerance))
+            # self.epsilon = math.exp(-(self.a*self.tolerance))
             # self.epsilon = (1.0/(self.tolerance**2))
             # self.epsilon = self.alpha**self.tolerance
             # self.epsilon = self.epsilon - self.tolerance
