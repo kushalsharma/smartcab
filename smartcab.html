@@ -12572,19 +12572,14 @@ You may also use a decaying function for $\alpha$ (the learning rate) if you so 
 <ul>
 <li><p>The optimal policy for the smartcab in the given environment will be to make a move such that the trafic lights are followed that is avoid violations and be aware of vehicals coming from inputs (left, right, upcoming) that is avoid accidents. Some examples of optimal policy will be :</p>
 <ul>
-<li><ul>
-<li><p><code>waypoint     light    left      right    upcoming</code></p>
-</li>
-<li><p><code>right        green    None      left     right</code></p>
-</li>
-<li><p><code>forward      green    None      None     None</code></p>
-</li>
-<li><p><code>right        green    None      left     forward</code></p>
-</li>
+<li>If the light is red and the waypoint is right, the agent should take a right unless there is no trafic from left going forward and no trafic from upcoming going left, then the agent should not make any move.</li>
+<li>If the light is red and the waypoint is not right, the agent should not make any move.</li>
+<li>If the light is green and the waypoint is forward or right, the agent should make a move to either forward or right.</li>
+<li>If the light is green and the waypoint is left, the agent should make a move towards left unless no trafic from upcoming is going right, then the agent should not make a move.</li>
 </ul>
 </li>
 </ul>
-</li>
+<ul>
 <li><p>Yes, there are states where the policy is different than what would be expected from an optimal policy.</p>
 </li>
 <li><p>('forward', 'red', None, None, None)</p>
