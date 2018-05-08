@@ -1,10 +1,2 @@
-### JupyterNotebook ###
 .ipynb_checkpoints
 .DS_Store
-*/.ipynb_checkpoints/*
-
-# Remove previous ipynb_checkpoints
-#   git rm -r .ipynb_checkpoints/
-#
-
-# End of https://www.gitignore.io/api/jupyternotebook
