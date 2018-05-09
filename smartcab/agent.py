@@ -21,7 +21,7 @@ class LearningAgent(Agent):
 
         # Set any additional class parameters as needed
         self.tolerance = 0.05
-        self.a = 0.0035
+        self.a = 0.004
 
 
     def reset(self, destination=None, testing=False):
@@ -41,7 +41,7 @@ class LearningAgent(Agent):
         else:
             self.tolerance = self.tolerance + 1.0
             self.epsilon = math.cos(self.a*self.tolerance)
-            self.alpha = math.exp(-(4*self.a*self.tolerance))
+            self.alpha = max(math.exp(-(4*self.a*self.tolerance)), 0.01)
             # self.epsilon = math.exp(-(self.a*self.tolerance))
             # self.epsilon = (1.0/(self.tolerance**2))
             # self.epsilon = self.alpha**self.tolerance
@@ -60,7 +60,7 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)  # Remaining deadline
         
         # Set 'state' as a tuple of relevant data for the agent        
-        state = (waypoint, inputs['light'], inputs['left'], inputs['right'], inputs['oncoming'])
+        state = (waypoint, inputs['light'], inputs['left'], inputs['oncoming'])
         
         if self.learning:
             self.createQ(state)
@@ -181,7 +181,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10)
+    sim.run(n_test=50)
 
 
 if __name__ == '__main__':
